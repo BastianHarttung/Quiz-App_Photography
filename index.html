@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Rubik -->    
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <title>Quiz-App Fotografie</title>
+    <!-- <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+</head>
+
+<body>
+
+    <div id="Background" class="background"></div>
+
+    <nav class="navigation">
+        <div class="nav-container">
+          <a class="nav-logo" href="index.html">
+            <img src="img/Logo_HARTTUNG_Film_schwarz_klein.png" alt="" height="60">
+          </a>
+          <a href="index.html" class="nav-link">Start</a>
+        </div>
+    </nav>
+
+    <section class="quiz-container">
+      
+      <div class="questionbox">
+        
+        <div id="Startscreen" class="start-container">
+
+
+          <h1>Bist du bereit für die digitale Fotografie?</h1>
+          <p>Dann starte jetzt das ultimative Quiz</p>
+
+          <div class="start-btn" onclick="startQuiz()">
+            <img src="img/camera.svg" alt="Start" title="Start" height="90px">
+            <p>Start</p>
+          </div>
+
+          <div class="bg-brain"><img src="img/braingear_orange_right.png"></div>
+
+        </div>
+        
+        <div id="Quizscreen" class="question-container d-none">
+
+          <h2 id="Question">Frage</h2>
+          
+          <div class="answer-container">
+            <div id="Answerbox1" class="answerbox" onclick = "answer(1)">
+              <div class="letter">A</div>
+              <div id="Answer_1" class="answer">Antwort 1</div>
+            </div>
+            <div id="Answerbox2" class="answerbox" onclick = "answer(2)">
+              <div class="letter">B</div>
+              <div id="Answer_2" class="answer">Antwort 2</div>
+            </div>
+            <div id="Answerbox3" class="answerbox" onclick = "answer(3)">
+              <div class="letter">C</div>
+              <div id="Answer_3" class="answer">Antwort 3</div>
+            </div>
+            <div id="Answerbox4" class="answerbox" onclick = "answer(4)">
+              <div class="letter">D</div>
+              <div id="Answer_4" class="answer">Antwort 4</div>
+            </div>
+          </div>
+
+          <div class="progress">
+            <div class="arrow arrow-left">&lt</div>
+            <div class="progress-container">
+              <div class="question-progress">
+                Frage <span id="Question-nr"></span> von <span id="Question-length"></span>
+              </div>
+              <div class="progress-bar">
+
+              </div>
+            </div>
+            <div class="arrow arrow-right">&gt</div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+        
+    <footer>
+
+      <div class="footer-container">
+
+        <div class="link-copyright-container">
+          <a href="https://www.harttung-fotografie.de">www.harttung-fotografie.de</a>
+          <div>© by Bastian Harttung 2021</div>
+        </div>
+
+        <div class="sm-links">
+          <a href="https://github.com/BastianHarttung" target="_blank"><img src="img/github-square.svg" alt="Github" title="Github"></a>
+          <a href="www.linkedin.com"><img src="img/linkedin.svg" alt="LinkedIn" title="LinkedIn"></a>
+        </div>
+
+      </div>
+
+    </footer>
+  
+</body>
+
+</html>
