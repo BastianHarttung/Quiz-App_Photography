@@ -31,7 +31,58 @@ let questions =[
     }
 ];
 
+let questionsEng =[
+    { 
+    'question': 'What is the ISO responsible for in modern cameras?',
+    'answer_1': 'The sensitivity of the sensor to light',
+    'answer_2': 'The image processing',
+    'answer_3': 'The Temperature',
+    'answer_4': 'The aperture',
+    'right_answer': 1,
+    'help_image': 'img/iso.jpg',
+    'help_text': `The higher the ISO, the higher the light sensitivity of the sensor, but the sensor's noise behavior also increases.`
+    },
+    { 
+    'question': 'What is the "golden ratio" called in photography?',
+    'answer_1': 'The choice of film sensitivity',
+    'answer_2': 'The focus in one picture',
+    'answer_3': 'The harmonious picture design',
+    'answer_4': 'The time of day with the most beautiful light',
+    'right_answer': 3,
+    'help_image': 'img/????.jpg',
+    'help_text': 'Text für Frage 2 auf englisch'
+    },
+    { 
+    'question': 'What causes the red-eye effect in people who are flashed at?',
+    'answer_1': 'The eye color is displayed incorrectly because the face was underexposed',
+    'answer_2': 'The eye color is displayed incorrectly because the face was overexposed',
+    'answer_3': 'Because the camera is on recording and has a red light',
+    'answer_4': 'The flash light is reflected back to the photographer by the retina',
+    'right_answer': 4,
+    'help_image': 'img/???.jpg',
+    'help_text': 'Text für Frage 3 auf englisch'
+    }
+];
+
 let currentQuestion = 0;
+let language = 'de'
+
+function toggleLanguage(){
+    if (language == 'de'){
+        language = 'en';
+        document.getElementById('Closebtn').style.left = '31px';
+        englishStartEnd();
+        showQuestion();
+        console.log('wechsel zu en')
+    }
+    else if (language =='en'){
+        language = 'de';
+        document.getElementById('Closebtn').style.left = '1px'; 
+        germanStartEnd();
+        showQuestion();        
+        console.log('wechsel zu de')
+    }
+}
 
 
 function startQuiz(){
@@ -43,16 +94,31 @@ function startQuiz(){
 
 
 function showQuestion(){
-    let question = questions[currentQuestion];
-    
-    document.getElementById('Question').innerHTML = question['question'];
-    document.getElementById('Answer_1').innerHTML = question['answer_1'];
-    document.getElementById('Answer_2').innerHTML = question['answer_2'];
-    document.getElementById('Answer_3').innerHTML = question['answer_3'];
-    document.getElementById('Answer_4').innerHTML = question['answer_4'];
-    document.getElementById('Help-img').src = question['help_image'];
-    document.getElementById('Help-text').innerHTML = question['help_text'];
 
+    if(language=='de'){
+        let question = questions[currentQuestion];
+        document.getElementById('Question').innerHTML = question['question'];
+        document.getElementById('Answer_1').innerHTML = question['answer_1'];
+        document.getElementById('Answer_2').innerHTML = question['answer_2'];
+        document.getElementById('Answer_3').innerHTML = question['answer_3'];
+        document.getElementById('Answer_4').innerHTML = question['answer_4'];
+        document.getElementById('Help-img').src = question['help_image'];
+        document.getElementById('Help-text').innerHTML = question['help_text'];
+
+    }else if (language=='en'){
+        let question = questionsEng[currentQuestion];
+        document.getElementById('Question').innerHTML = question['question'];
+        document.getElementById('Answer_1').innerHTML = question['answer_1'];
+        document.getElementById('Answer_2').innerHTML = question['answer_2'];
+        document.getElementById('Answer_3').innerHTML = question['answer_3'];
+        document.getElementById('Answer_4').innerHTML = question['answer_4'];
+        document.getElementById('Help-img').src = question['help_image'];
+        document.getElementById('Help-text').innerHTML = question['help_text'];
+
+    }
+    
+    
+    
     if(currentQuestion == 0){
         document.getElementById('Arrow-left').classList.add('invisible');
     }else if(currentQuestion == questions.length-1){
@@ -104,5 +170,27 @@ function previousQuestion(){
 
     currentQuestion = currentQuestion - 1;
 
+    for (let i = 1; i <= 4; i++) {
+        document.getElementById('Answerbox'+ i).style.backgroundColor = 'white';        
+    }    
+
+    document.getElementById('Helpscreen').classList.add('d-none');
+
     showQuestion();
 }
+
+
+function englishStartEnd(){
+    document.getElementById('Start-head').innerHTML = 'Are you ready for digital Photography?';
+    document.getElementById('Start-text').innerHTML = 'Then start the ultimate Quiz now'
+}
+
+function germanStartEnd(){
+    document.getElementById('Start-head').innerHTML = 'Bist du bereit für die digitale Fotografie?';
+    document.getElementById('Start-text').innerHTML = 'Dann starte jetzt das ultimative Quiz'
+}
+
+
+
+
+

@@ -23,7 +23,16 @@
           <a class="nav-logo" href="index.html">
             <img src="img/Logo_HARTTUNG_Film_schwarz_klein.png" alt="" height="60">
           </a>
-          <a href="index.html" class="nav-link">Start</a>
+          <a href="index.html" id="" class="nav-link">Start</a>
+
+          <div id="Button">
+            <div id="Languagebtn" onclick="toggleLanguage()">    
+                <div id="Closebtn"></div>    
+                <div id="English" >EN</div>                
+                <div id="German" >DE</div>            
+            </div>    
+          </div>
+
         </div>
     </nav>
 
@@ -34,8 +43,8 @@
         <div id="Startscreen" class="start-container">
 
 
-          <h1>Bist du bereit für die digitale Fotografie?</h1>
-          <p>Dann starte jetzt das ultimative Quiz</p>
+          <h1 id="Start-head">Bist du bereit für die digitale Fotografie?</h1>
+          <p id="Start-text">Dann starte jetzt das ultimative Quiz</p>
 
           <div class="start-btn" onclick="startQuiz()">
             <img src="img/camera.svg" alt="Start" title="Start" height="90px">
