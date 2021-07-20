@@ -55,17 +55,19 @@ function showQuestion(){
 
     if(currentQuestion == 0){
         document.getElementById('Arrow-left').classList.add('invisible');
-    }else if(currentQuestion == question.length){
+    }else if(currentQuestion == questions.length-1){
         document.getElementById('Arrow-right').classList.add('invisible');
     }else{
         document.getElementById('Arrow-left').classList.remove('invisible');
         document.getElementById('Arrow-right').classList.remove('invisible');
     }
 
-    document.getElementById('Question-nr').innerHTML = 1;
+    document.getElementById('Question-nr').innerHTML = currentQuestion + 1;
     document.getElementById('Question-length').innerHTML = questions.length;
 
 }
+
+
 
 function answer(selection){
     let question = questions[currentQuestion];
@@ -82,4 +84,25 @@ function answer(selection){
         document.getElementById('Helpscreen').classList.remove('d-none');        
     }
     
+}
+
+function nextQuestion(){
+    
+    currentQuestion = currentQuestion + 1;
+    
+    for (let i = 1; i <= 4; i++) {
+        document.getElementById('Answerbox'+ i).style.backgroundColor = 'white';        
+    }    
+
+    document.getElementById('Helpscreen').classList.add('d-none');
+
+    showQuestion();
+}
+
+
+function previousQuestion(){
+
+    currentQuestion = currentQuestion - 1;
+
+    showQuestion();
 }
