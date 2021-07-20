@@ -42,7 +42,6 @@
         
         <div id="Startscreen" class="start-container">
 
-
           <h1 id="Start-head">Bist du bereit für die digitale Fotografie?</h1>
           <p id="Start-text">Dann starte jetzt das ultimative Quiz</p>
 
@@ -82,7 +81,10 @@
             <div id="Arrow-left" class="arrow arrow-left" onclick="previousQuestion()">&lt</div>
             <div class="progress-container">
               <div class="question-progress">
-                Frage <span id="Question-nr"></span> von <span id="Question-length"></span>
+                <span id="Frage">Frage</span> 
+                <span id="Question-nr"></span> 
+                <span id="Of">von</span> 
+                <span id="Question-length"></span>
               </div>
               <div class="progress-bar">
 
@@ -94,7 +96,7 @@
 
       </div>
 
-      <div id="Helpscreen" class="helpscreen d-none">
+      <div id="Helpscreen" class="helpscreen invisible">
           <div class="help-container">
             <img id="Help-img" src="">
             <p id="Help-text"></p>

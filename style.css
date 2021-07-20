@@ -24,6 +24,7 @@ body{
     --font-black: rgb(51, 51, 51);
     --white-transpa: rgb(255, 255, 255,.5);
     --white-box: rgb(255, 255, 255,.8);
+    --orange: rgb(255, 160, 52);
 }
 
 .background{
@@ -47,7 +48,7 @@ body{
 }
 .invisible{
     opacity: 0;
-    visibility: hidden;
+    visibility: hidden;    
 }
 
 /* -----------------------Header----------------- */
@@ -58,7 +59,7 @@ body{
     justify-content: center;
 }
 .nav-container{
-    width: 70%;
+    width: 65%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -73,6 +74,19 @@ body{
     color: var(--font-black);
     font-size: 26px;
     text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.nav-link::after{
+    background-color: var(--orange);
+    content: '';
+    width: 0;
+    height: 2px;
+    transition: width 250ms ease-in-out;
+}
+.nav-link:hover::after{
+    width: 100%;
 }
 
 /* Language button */
@@ -80,15 +94,13 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-end;
-    
-    
+    align-items: flex-end;        
 }
 #Languagebtn{
     background-color: rgb(65, 65, 65);
     height: 30px;
     width: 60px;
-    border: solid 1px rgb(211, 211, 211);
+    border: solid 1px rgb(211, 211, 211,.5);
     border-radius: 40px;
     display: flex;
     flex-direction: row;
@@ -99,7 +111,8 @@ body{
     cursor: pointer;
     position: relative;
 }        
-#English{
+#English,
+#German{
     color: white;            
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
@@ -111,18 +124,6 @@ body{
     height: 20px;
     border-radius: 100%;               
 }   
-#German{            
-    color: white;            
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 100%;             
-}
 #Closebtn{
     content: '';
     width: 28px;
@@ -189,10 +190,8 @@ body{
 
 .quiz-container{    
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    position: relative;
-    
+    justify-content: center;
+    align-items: center;        
 }
 .question-container{
     height: 100%;
@@ -207,6 +206,7 @@ body{
     width: 700px;
     backdrop-filter: blur(5px);
     border: 1px solid gray;
+    margin-right: 50px;
 }
 .questionbox h2{
     text-align: center;
@@ -292,6 +292,8 @@ body{
     border: 1px solid gray;
     width: 500px;
     height: 600px;
+    transition: opacity 150ms ease-in-out,
+                visibility 150ms ease-in-out;
 }
 .help-container{
     height: 100%;
@@ -325,7 +327,7 @@ footer{
 .footer-container{
     display: flex;
     justify-content: space-between;
-    width: 70%;
+    width: 65%;
 }
 
 .link-copyright-container{

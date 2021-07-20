@@ -141,40 +141,40 @@ function answer(selection){
     if(selection == question['right_answer']){
         console.log('richtig');
         document.getElementById('Answerbox'+selection).style.backgroundColor = '#CCFF91';
-        document.getElementById('Helpscreen').classList.remove('d-none');
+        document.getElementById('Helpscreen').classList.remove('invisible');
     }else{
         console.log('falsch');
         let rightanswer = question['right_answer']; 
         document.getElementById('Answerbox'+rightanswer).style.backgroundColor = '#CCFF91';
         document.getElementById('Answerbox'+selection).style.backgroundColor = '#FFA1A1';
-        document.getElementById('Helpscreen').classList.remove('d-none');        
+        document.getElementById('Helpscreen').classList.remove('invisible');        
     }
     
 }
 
 function nextQuestion(){
-    
-    currentQuestion = currentQuestion + 1;
+        
+    currentQuestion = currentQuestion + 1;     
     
     for (let i = 1; i <= 4; i++) {
         document.getElementById('Answerbox'+ i).style.backgroundColor = 'white';        
     }    
 
-    document.getElementById('Helpscreen').classList.add('d-none');
+    document.getElementById('Helpscreen').classList.add('invisible');
 
     showQuestion();
 }
 
 
 function previousQuestion(){
-
-    currentQuestion = currentQuestion - 1;
+    
+    currentQuestion = currentQuestion - 1;        
 
     for (let i = 1; i <= 4; i++) {
         document.getElementById('Answerbox'+ i).style.backgroundColor = 'white';        
     }    
 
-    document.getElementById('Helpscreen').classList.add('d-none');
+    document.getElementById('Helpscreen').classList.add('invisible');
 
     showQuestion();
 }
@@ -182,12 +182,16 @@ function previousQuestion(){
 
 function englishStartEnd(){
     document.getElementById('Start-head').innerHTML = 'Are you ready for digital Photography?';
-    document.getElementById('Start-text').innerHTML = 'Then start the ultimate Quiz now'
+    document.getElementById('Start-text').innerHTML = 'Then start the ultimate Quiz now';
+    document.getElementById('Frage').innerHTML = 'Question';
+    document.getElementById('Of').innerHTML = 'of';
 }
 
 function germanStartEnd(){
     document.getElementById('Start-head').innerHTML = 'Bist du bereit für die digitale Fotografie?';
-    document.getElementById('Start-text').innerHTML = 'Dann starte jetzt das ultimative Quiz'
+    document.getElementById('Start-text').innerHTML = 'Dann starte jetzt das ultimative Quiz';
+    document.getElementById('Frage').innerHTML = 'Frage';
+    document.getElementById('Of').innerHTML = 'von';
 }
 
 
