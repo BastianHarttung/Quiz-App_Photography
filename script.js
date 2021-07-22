@@ -65,7 +65,8 @@ let questionsEng =[
 ];
 
 let currentQuestion = 0;
-let language = 'de'
+let language = 'de';
+let rightAnswers = 0;
 
 function toggleLanguage(){
     if (language == 'de'){
@@ -88,7 +89,10 @@ function toggleLanguage(){
 function startQuiz(){
     document.getElementById('Startscreen').classList.add('d-none');
     document.getElementById('Quizscreen').classList.remove('d-none');
+    document.getElementById('Endscreen').classList.add('d-none');
     document.getElementById('Background').classList.add('blur');
+    deleteAnswerColor();
+    currentQuestion = 0;
     showQuestion();
 }
 
@@ -121,8 +125,9 @@ function showQuestion(){
     
     if(currentQuestion == 0){
         document.getElementById('Arrow-left').classList.add('invisible');
-    }else if(currentQuestion == questions.length-1){
-        document.getElementById('Arrow-right').classList.add('invisible');
+    }else if(currentQuestion == questions.length){
+        showEndScreen();
+        /* document.getElementById('Arrow-right').classList.add('invisible'); */
     }else{
         document.getElementById('Arrow-left').classList.remove('invisible');
         document.getElementById('Arrow-right').classList.remove('invisible');
@@ -139,6 +144,7 @@ function answer(selection){
     let question = questions[currentQuestion];
     
     if(selection == question['right_answer']){
+        rightAnswers = rightAnswers+1;
         console.log('richtig');
         document.getElementById('Answerbox'+selection).style.backgroundColor = '#CCFF91';
         document.getElementById('Helpscreen').classList.remove('invisible');
@@ -153,16 +159,21 @@ function answer(selection){
 }
 
 function nextQuestion(){
-        
-    currentQuestion = currentQuestion + 1;     
     
-    for (let i = 1; i <= 4; i++) {
-        document.getElementById('Answerbox'+ i).style.backgroundColor = 'white';        
-    }    
+    if (currentQuestion == questions.length-1) {
+        showEndScreen();
+        
+    }else{
+        currentQuestion = currentQuestion + 1;     
+        
+        for (let i = 1; i <= 4; i++) {
+            document.getElementById('Answerbox'+ i).style.backgroundColor = 'white';        
+        }    
 
-    document.getElementById('Helpscreen').classList.add('invisible');
+        document.getElementById('Helpscreen').classList.add('invisible');
 
-    showQuestion();
+        showQuestion();
+    }
 }
 
 
@@ -170,9 +181,7 @@ function previousQuestion(){
     
     currentQuestion = currentQuestion - 1;        
 
-    for (let i = 1; i <= 4; i++) {
-        document.getElementById('Answerbox'+ i).style.backgroundColor = 'white';        
-    }    
+     deleteAnswerColor();
 
     document.getElementById('Helpscreen').classList.add('invisible');
 
@@ -183,8 +192,12 @@ function previousQuestion(){
 function englishStartEnd(){
     document.getElementById('Start-head').innerHTML = 'Are you ready for digital Photography?';
     document.getElementById('Start-text').innerHTML = 'Then start the ultimate Quiz now';
+
     document.getElementById('Frage').innerHTML = 'Question';
     document.getElementById('Of').innerHTML = 'of';
+
+    document.getElementById('End-head').innerHTML = 'Your Result';
+    document.getElementById('Right').innerHTML = 'Right';
 }
 
 function germanStartEnd(){
@@ -194,6 +207,27 @@ function germanStartEnd(){
     document.getElementById('Of').innerHTML = 'von';
 }
 
+function deleteAnswerColor(){
+    for (let i = 1; i <= 4; i++) {
+        document.getElementById('Answerbox'+ i).style.backgroundColor = 'white';        
+    }   
+}
+
+function showEndScreen(){
+    console.log('Ende');
+    document.getElementById('Quizscreen').classList.add('d-none');
+    document.getElementById('Endscreen').classList.remove('d-none');
+    document.getElementById('Helpscreen').classList.add('invisible');
+
+    document.getElementById('Rightanswers').innerHTML = rightAnswers;
+    document.getElementById('Questionlength').innerHTML = questions.length;
+
+    if(rightAnswers >= 2){
+        document.getElementById('End-text').innerHTML = 'Sehr gut gemacht!';
+    }else{
+        document.getElementById('End-text').innerHTML = 'Übe noch etwas.';
+    }
+}
 
 
 
