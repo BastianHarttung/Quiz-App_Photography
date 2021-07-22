@@ -16,8 +16,8 @@ let questions =[
     'answer_3': 'Die harmonische Bildgestaltung',
     'answer_4': 'Die Tageszeit mit dem schönsten Licht',
     'right_answer': 3,
-    'help_image': 'img/????.jpg',
-    'help_text': 'Text für Frage 2'
+    'help_image': 'img/goldenerschnitt.jpg',
+    'help_text': 'Der Goldene Schnitt ist eine seit der Antike bekannte Gestaltungsregel und bezeichnet das Teilungsverhältnis zweier Größen zueinander. Diese Teilung gilt als ausgewogenes Leitmaß und wird vom Menschen als besonders harmonisch empfunden.'
     },
     { 
     'question': 'Wodurch entsteht der Rote-Augen-Effekt bei Personen, die angeblitzt werden?',
@@ -26,8 +26,8 @@ let questions =[
     'answer_3': 'Weil die Kamera auf Aufnahme steht und ein rotes Licht hat',
     'answer_4': 'Das Blitzlicht wird von der Netzhaut zurück zum Fotografen reflektiert',
     'right_answer': 4,
-    'help_image': 'img/???.jpg',
-    'help_text': 'Text für Frage 3'
+    'help_image': 'img/redeyeeffect.jpg',
+    'help_text': 'Der Rote-Augen-Effekt entsteht, weil die Netzhaut - wegen ihrer starken Durchblutung - rot ist und das vom Blitz ausgesandte Licht von der Netzhaut reflektiert und zurück in Richtung Kamera gestrahlt wird.'
     }
 ];
 
@@ -49,8 +49,8 @@ let questionsEng =[
     'answer_3': 'The harmonious picture design',
     'answer_4': 'The time of day with the most beautiful light',
     'right_answer': 3,
-    'help_image': 'img/????.jpg',
-    'help_text': 'Text für Frage 2 auf englisch'
+    'help_image': 'img/goldenerschnitt.jpg',
+    'help_text': 'The golden ratio has been a design rule that has been known since ancient times and describes the ratio between two sizes. This division is considered a balanced guideline and is perceived as particularly harmonious by people.'
     },
     { 
     'question': 'What causes the red-eye effect in people who are flashed at?',
@@ -59,8 +59,8 @@ let questionsEng =[
     'answer_3': 'Because the camera is on recording and has a red light',
     'answer_4': 'The flash light is reflected back to the photographer by the retina',
     'right_answer': 4,
-    'help_image': 'img/???.jpg',
-    'help_text': 'Text für Frage 3 auf englisch'
+    'help_image': 'img/redeyeeffect.jpg',
+    'help_text': 'The red-eye effect occurs because the retina - due to its high blood flow - is red and the light emitted by the flash is reflected by the retina and beamed back towards the camera.'
     }
 ];
 
