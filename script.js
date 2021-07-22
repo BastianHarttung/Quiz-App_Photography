@@ -73,14 +73,24 @@ function toggleLanguage(){
         language = 'en';
         document.getElementById('Closebtn').style.left = '31px';
         englishStartEnd();
-        showQuestion();
-        console.log('wechsel zu en')
+        showQuestion();        
+        if (document.getElementById('End-text').innerHTML == 'Sehr gut gemacht!') {
+            document.getElementById('End-text').innerHTML = 'Very good!';
+        }else if (document.getElementById('End-text').innerHTML == 'Übe noch etwas.'){
+            document.getElementById('End-text').innerHTML = 'Not good. Try again';
+        }
+        console.log('wechsel zu en');
     }
     else if (language =='en'){
         language = 'de';
         document.getElementById('Closebtn').style.left = '1px'; 
         germanStartEnd();
-        showQuestion();        
+        showQuestion();   
+        if (document.getElementById('End-text').innerHTML == 'Very good!') {
+            document.getElementById('End-text').innerHTML = 'Sehr gut gemacht!';
+        }else if (document.getElementById('End-text').innerHTML == 'Not good. Try again'){
+            document.getElementById('End-text').innerHTML = 'Übe noch etwas.';
+        }     
         console.log('wechsel zu de')
     }
 }
@@ -91,6 +101,7 @@ function startQuiz(){
     document.getElementById('Quizscreen').classList.remove('d-none');
     document.getElementById('Endscreen').classList.add('d-none');
     document.getElementById('Background').classList.add('blur');
+    rightAnswers = 0;
     deleteAnswerColor();
     currentQuestion = 0;
     showQuestion();
@@ -126,8 +137,7 @@ function showQuestion(){
     if(currentQuestion == 0){
         document.getElementById('Arrow-left').classList.add('invisible');
     }else if(currentQuestion == questions.length){
-        showEndScreen();
-        /* document.getElementById('Arrow-right').classList.add('invisible'); */
+        showEndScreen();        
     }else{
         document.getElementById('Arrow-left').classList.remove('invisible');
         document.getElementById('Arrow-right').classList.remove('invisible');
@@ -166,9 +176,7 @@ function nextQuestion(){
     }else{
         currentQuestion = currentQuestion + 1;     
         
-        for (let i = 1; i <= 4; i++) {
-            document.getElementById('Answerbox'+ i).style.backgroundColor = 'white';        
-        }    
+        deleteAnswerColor();
 
         document.getElementById('Helpscreen').classList.add('invisible');
 
@@ -198,20 +206,28 @@ function englishStartEnd(){
 
     document.getElementById('End-head').innerHTML = 'Your Result';
     document.getElementById('Right').innerHTML = 'Right';
+    document.getElementById('Again').innerHTML = 'Again'
 }
 
 function germanStartEnd(){
     document.getElementById('Start-head').innerHTML = 'Bist du bereit für die digitale Fotografie?';
     document.getElementById('Start-text').innerHTML = 'Dann starte jetzt das ultimative Quiz';
+
     document.getElementById('Frage').innerHTML = 'Frage';
     document.getElementById('Of').innerHTML = 'von';
+
+    document.getElementById('End-head').innerHTML = 'Dein Ergebnis';
+    document.getElementById('Right').innerHTML = 'Richtig';
+    document.getElementById('Again').innerHTML = 'Nochmal'
 }
+
 
 function deleteAnswerColor(){
     for (let i = 1; i <= 4; i++) {
         document.getElementById('Answerbox'+ i).style.backgroundColor = 'white';        
     }   
 }
+
 
 function showEndScreen(){
     console.log('Ende');
@@ -222,10 +238,14 @@ function showEndScreen(){
     document.getElementById('Rightanswers').innerHTML = rightAnswers;
     document.getElementById('Questionlength').innerHTML = questions.length;
 
-    if(rightAnswers >= 2){
+    if(rightAnswers >= 2 && language == 'de'){
         document.getElementById('End-text').innerHTML = 'Sehr gut gemacht!';
-    }else{
+    }else if(rightAnswers < 2 && language == 'de'){
         document.getElementById('End-text').innerHTML = 'Übe noch etwas.';
+    }else if (rightAnswers >=2 && language == 'en'){
+        document.getElementById('End-text').innerHTML = 'Very good!';
+    }else if (rightAnswers < 2 && language == 'en'){
+        document.getElementById('End-text').innerHTML = 'Not good. Try again';
     }
 }
 
