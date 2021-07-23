@@ -185,8 +185,13 @@ function showQuestion(){
         document.getElementById('Answer_2').innerHTML = question['answer_2'];
         document.getElementById('Answer_3').innerHTML = question['answer_3'];
         document.getElementById('Answer_4').innerHTML = question['answer_4'];
-        document.getElementById('Help-img').src = question['help_image'];
-        document.getElementById('Help-text').innerHTML = question['help_text'];
+        
+        if(document.getElementById('Endscreen').classList.contains('d-none')){
+            document.getElementById('Help-img').src = question['help_image'];
+            document.getElementById('Help-text').innerHTML = question['help_text'];
+        }else{
+            showEndScreen();
+        }
 
     }else if (language=='en'){
         let question = questionsEng[currentQuestion];
