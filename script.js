@@ -1,5 +1,15 @@
 let questions =[
     { 
+    'question': 'Was ist das Belichtungsdreieck?',
+    'answer_1': 'Der Spiegel in einer Spiegelreflexkamera',
+    'answer_2': 'Der Zusammenhang zwischen Blende, Verschlusszeit und ISO',
+    'answer_3': 'Die Punkte im Bild, die richtig belichtet sein sollen',
+    'answer_4': 'Der dreieckige Knopf an jeder Kamera',
+    'right_answer': 2,
+    'help_image': 'img/belichtungsdreieck.jpg',
+    'help_text': 'Das Belichtungsdreieck beschreibt den Zusammenhang zwischen Blende, Verschlusszeit und ISO – alles wichtige Werte in der Fotografie. Sie sind für die richtige Belichtung verantwortlich, ein essentielles Kriterium für die Qualität deiner Fotos.'
+    },
+    { 
     'question': 'Wofür ist die ISO bei modernen Kameras verantwortlich?',
     'answer_1': 'Die Lichtempfindlichkeit des Sensors',
     'answer_2': 'Die Bildbearbeitung',
@@ -10,13 +20,23 @@ let questions =[
     'help_text': 'Je höher die ISO, desto höher die Lichtempfindlichkeit des Sensors, aber auch das Rauschverhalten des Sensors steigt.'
     },
     { 
+    'question': 'Was ist die Blende bei einer Kamera?',
+    'answer_1': 'Das Display an der Rückseite',
+    'answer_2': 'Die kleine, verschließbare Öffnung im Inneren des Objektivs',
+    'answer_3': 'Das blendende rote Licht des Blitzes',
+    'answer_4': 'Der Verschlussdeckel vorne am Objektiv',
+    'right_answer': 2,
+    'help_image': 'img/blende.jpg',
+    'help_text': 'Die Blende ist die hintere Öffnung deines Objektivs. Wie groß diese Öffnung ist, kannst du selbst regeln und damit bestimmen, wie viel Licht auf den Sensor der Kamera trifft. Die Größe der Öffnung wird mit der Blendenzahl angegeben.'
+    },
+    { 
     'question': 'Als was bezeichnet man den "Goldenen Schnitt" in der Fotografie?',
     'answer_1': 'Die Wahl der Filmempfindlichkeit',
     'answer_2': 'Der Fokus in einem Bild',
     'answer_3': 'Die harmonische Bildgestaltung',
     'answer_4': 'Die Tageszeit mit dem schönsten Licht',
     'right_answer': 3,
-    'help_image': 'img/goldenerschnitt.jpg',
+    'help_image': 'img/goldenerschnitt.png',
     'help_text': 'Der Goldene Schnitt ist eine seit der Antike bekannte Gestaltungsregel und bezeichnet das Teilungsverhältnis zweier Größen zueinander. Diese Teilung gilt als ausgewogenes Leitmaß und wird vom Menschen als besonders harmonisch empfunden.'
     },
     { 
@@ -33,6 +53,16 @@ let questions =[
 
 let questionsEng =[
     { 
+    'question': 'What is the exposure triangle?',
+    'answer_1': 'The mirror in a single lens reflex camera',
+    'answer_2': 'The relationship between aperture, shutter speed and ISO',
+    'answer_3': 'The points in the image that should be properly exposed',
+    'answer_4': 'The triangular button on each camera',
+    'right_answer': 2,
+    'help_image': 'img/belichtungsdreieck.jpg',
+    'help_text': 'The exposure triangle describes the relationship between aperture, shutter speed and ISO - all important values ​​in photography. They are responsible for the correct exposure, an essential criterion for the quality of your photos.'
+    },
+    { 
     'question': 'What is the ISO responsible for in modern cameras?',
     'answer_1': 'The sensitivity of the sensor to light',
     'answer_2': 'The image processing',
@@ -41,6 +71,16 @@ let questionsEng =[
     'right_answer': 1,
     'help_image': 'img/iso.jpg',
     'help_text': `The higher the ISO, the higher the light sensitivity of the sensor, but the sensor's noise behavior also increases.`
+    },
+    { 
+    'question': 'What is the aperture on a camera?',
+    'answer_1': 'The display on the back',
+    'answer_2': 'The small, lockable opening inside the lens',
+    'answer_3': 'The blinding red light of lightning',
+    'answer_4': 'The cover on the front of the lens',
+    'right_answer': 2,
+    'help_image': 'img/blende.jpg',
+    'help_text': "The aperture is the back opening of your lens. You can regulate the size of this opening yourself and thus determine how much light hits the camera's sensor. The size of the opening is indicated by the f-number."
     },
     { 
     'question': 'What is the "golden ratio" called in photography?',
@@ -67,7 +107,9 @@ let questionsEng =[
 let currentQuestion = 0;
 let language = 'de';
 let rightAnswers = 0;
+let answered = false;
 
+/* Language */
 function toggleLanguage(){
     if (language == 'de'){
         language = 'en';
@@ -95,108 +137,6 @@ function toggleLanguage(){
     }
 }
 
-
-function startQuiz(){
-    document.getElementById('Startscreen').classList.add('d-none');
-    document.getElementById('Quizscreen').classList.remove('d-none');
-    document.getElementById('Endscreen').classList.add('d-none');
-    document.getElementById('Background').classList.add('blur');
-    rightAnswers = 0;
-    deleteAnswerColor();
-    currentQuestion = 0;
-    showQuestion();
-}
-
-
-function showQuestion(){
-
-    if(language=='de'){
-        let question = questions[currentQuestion];
-        document.getElementById('Question').innerHTML = question['question'];
-        document.getElementById('Answer_1').innerHTML = question['answer_1'];
-        document.getElementById('Answer_2').innerHTML = question['answer_2'];
-        document.getElementById('Answer_3').innerHTML = question['answer_3'];
-        document.getElementById('Answer_4').innerHTML = question['answer_4'];
-        document.getElementById('Help-img').src = question['help_image'];
-        document.getElementById('Help-text').innerHTML = question['help_text'];
-
-    }else if (language=='en'){
-        let question = questionsEng[currentQuestion];
-        document.getElementById('Question').innerHTML = question['question'];
-        document.getElementById('Answer_1').innerHTML = question['answer_1'];
-        document.getElementById('Answer_2').innerHTML = question['answer_2'];
-        document.getElementById('Answer_3').innerHTML = question['answer_3'];
-        document.getElementById('Answer_4').innerHTML = question['answer_4'];
-        document.getElementById('Help-img').src = question['help_image'];
-        document.getElementById('Help-text').innerHTML = question['help_text'];
-
-    }
-    
-    
-    
-    if(currentQuestion == 0){
-        document.getElementById('Arrow-left').classList.add('invisible');
-    }else if(currentQuestion == questions.length){
-        showEndScreen();        
-    }else{
-        document.getElementById('Arrow-left').classList.remove('invisible');
-        document.getElementById('Arrow-right').classList.remove('invisible');
-    }
-
-    document.getElementById('Question-nr').innerHTML = currentQuestion + 1;
-    document.getElementById('Question-length').innerHTML = questions.length;
-
-}
-
-
-
-function answer(selection){
-    let question = questions[currentQuestion];
-    
-    if(selection == question['right_answer']){
-        rightAnswers = rightAnswers+1;
-        console.log('richtig');
-        document.getElementById('Answerbox'+selection).style.backgroundColor = '#CCFF91';
-        document.getElementById('Helpscreen').classList.remove('invisible');
-    }else{
-        console.log('falsch');
-        let rightanswer = question['right_answer']; 
-        document.getElementById('Answerbox'+rightanswer).style.backgroundColor = '#CCFF91';
-        document.getElementById('Answerbox'+selection).style.backgroundColor = '#FFA1A1';
-        document.getElementById('Helpscreen').classList.remove('invisible');        
-    }
-    
-}
-
-function nextQuestion(){
-    
-    if (currentQuestion == questions.length-1) {
-        showEndScreen();
-        
-    }else{
-        currentQuestion = currentQuestion + 1;     
-        
-        deleteAnswerColor();
-
-        document.getElementById('Helpscreen').classList.add('invisible');
-
-        showQuestion();
-    }
-}
-
-
-function previousQuestion(){
-    
-    currentQuestion = currentQuestion - 1;        
-
-     deleteAnswerColor();
-
-    document.getElementById('Helpscreen').classList.add('invisible');
-
-    showQuestion();
-}
-
-
 function englishStartEnd(){
     document.getElementById('Start-head').innerHTML = 'Are you ready for digital Photography?';
     document.getElementById('Start-text').innerHTML = 'Then start the ultimate Quiz now';
@@ -222,23 +162,139 @@ function germanStartEnd(){
 }
 
 
+/* Quiz */
+function startQuiz(){
+    document.getElementById('Startscreen').classList.add('d-none');
+    document.getElementById('Quizscreen').classList.remove('d-none');
+    document.getElementById('Endscreen').classList.add('d-none');
+    document.getElementById('Background').classList.add('blur');
+    document.getElementById('Download-cheatsheet').classList.add('d-none');
+    rightAnswers = 0;
+    answered = false;
+    deleteAnswerColor();
+    currentQuestion = 0;
+    showQuestion();
+}
+
+function showQuestion(){
+
+    if(language=='de'){
+        let question = questions[currentQuestion];
+        document.getElementById('Question').innerHTML = question['question'];
+        document.getElementById('Answer_1').innerHTML = question['answer_1'];
+        document.getElementById('Answer_2').innerHTML = question['answer_2'];
+        document.getElementById('Answer_3').innerHTML = question['answer_3'];
+        document.getElementById('Answer_4').innerHTML = question['answer_4'];
+        document.getElementById('Help-img').src = question['help_image'];
+        document.getElementById('Help-text').innerHTML = question['help_text'];
+
+    }else if (language=='en'){
+        let question = questionsEng[currentQuestion];
+        document.getElementById('Question').innerHTML = question['question'];
+        document.getElementById('Answer_1').innerHTML = question['answer_1'];
+        document.getElementById('Answer_2').innerHTML = question['answer_2'];
+        document.getElementById('Answer_3').innerHTML = question['answer_3'];
+        document.getElementById('Answer_4').innerHTML = question['answer_4'];
+        document.getElementById('Help-img').src = question['help_image'];
+        document.getElementById('Help-text').innerHTML = question['help_text'];
+    }        
+    
+    if(currentQuestion == 0){
+        document.getElementById('Arrow-left').classList.add('invisible');
+    }else if(currentQuestion == questions.length){
+        showEndScreen();        
+    }else{
+        document.getElementById('Arrow-left').classList.remove('invisible');
+        document.getElementById('Arrow-right').classList.remove('invisible');
+    }
+
+    document.getElementById('Question-nr').innerHTML = currentQuestion + 1;
+    document.getElementById('Question-length').innerHTML = questions.length;
+    answered = false;
+}
+
+function answer(selection){
+    let question = questions[currentQuestion];
+    
+    if(answered == false){
+        if(selection == question['right_answer']){
+            rightAnswers = rightAnswers+1;
+            console.log('richtig');
+            document.getElementById('Answerbox'+selection).style.backgroundColor = '#CCFF91';
+            document.getElementById('Helpscreen').classList.remove('invisible');
+        }else{
+            console.log('falsch');
+            let rightanswer = question['right_answer']; 
+            document.getElementById('Answerbox'+rightanswer).style.backgroundColor = '#CCFF91';
+            document.getElementById('Answerbox'+selection).style.backgroundColor = '#FFA1A1';
+            document.getElementById('Helpscreen').classList.remove('invisible');        
+        }
+    }
+
+    answered = true;      
+    
+}
+
+function nextQuestion(){
+    
+    if (currentQuestion == questions.length-1) {
+        showEndScreen();
+        
+    }else{
+        currentQuestion = currentQuestion + 1;     
+        
+        deleteAnswerColor();
+
+        document.getElementById('Helpscreen').classList.add('invisible');
+
+        showQuestion();
+    }
+
+    answered = false;
+}
+
+function previousQuestion(){
+    
+    currentQuestion = currentQuestion - 1;        
+
+    if(answered == true){
+        deleteAnswerColor();
+    }else if(answered == false){
+        document.getElementById('Helpscreen').classList.remove('invisible');
+    }    
+
+    document.getElementById('Answerbox'+questions[currentQuestion]['right_answer']).style.backgroundColor = '#CCFF91';
+
+    showQuestion();
+
+    answered = true;
+}
+
 function deleteAnswerColor(){
     for (let i = 1; i <= 4; i++) {
         document.getElementById('Answerbox'+ i).style.backgroundColor = 'white';        
     }   
 }
 
-
 function showEndScreen(){
     console.log('Ende');
     document.getElementById('Quizscreen').classList.add('d-none');
     document.getElementById('Endscreen').classList.remove('d-none');
-    document.getElementById('Helpscreen').classList.add('invisible');
+    document.getElementById('Helpscreen').classList.remove('invisible');
+
+    document.getElementById('Help-img').src = 'img/cheat-sheet.jpg';
+    document.getElementById('Download-cheatsheet').classList.remove('d-none');
+
+    if(language =='de'){
+        document.getElementById('Help-text').innerHTML = 'Als Belohnung für das Quiz gibts einen Spickzettel zum Download.'
+    }else if(language == 'en'){
+        document.getElementById('Help-text').innerHTML = 'As a reward for the quiz, there is a cheat sheet to download.'
+    }
 
     document.getElementById('Rightanswers').innerHTML = rightAnswers;
     document.getElementById('Questionlength').innerHTML = questions.length;
 
-    if(rightAnswers >= 2 && language == 'de'){
+    if(rightAnswers >= 4 && language == 'de'){
         document.getElementById('End-text').innerHTML = 'Sehr gut gemacht!';
     }else if(rightAnswers < 2 && language == 'de'){
         document.getElementById('End-text').innerHTML = 'Übe noch etwas.';
@@ -248,7 +304,5 @@ function showEndScreen(){
         document.getElementById('End-text').innerHTML = 'Not good. Try again';
     }
 }
-
-
 
 

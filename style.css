@@ -305,10 +305,12 @@ body{
     padding: 0 40px;  
 }
 #Help-img{
-    height: 300px;
-    width: 300px;
-    object-fit: cover;
-    object-position: center;    
+    background-color: var(--brown);
+    height: 350px;
+    width: 350px;
+    object-fit: contain;
+    object-position: center;
+    padding: 5px;    
 }
 #Help-text{
     font-size: 20px;
@@ -358,6 +360,10 @@ body{
 .bg-award img{
     width: 350px;    
     opacity: .5;
+}
+#Download-cheatsheet{
+    height: 50px;
+    width: 50px;
 }
 
 /* -----------------Footer----------------------- */
