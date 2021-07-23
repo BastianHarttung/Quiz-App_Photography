@@ -206,11 +206,12 @@ function showQuestion(){
     
     if(currentQuestion == 0){
         document.getElementById('Arrow-left').classList.add('invisible');
+        document.getElementById('Arrow-right').classList.add('invisible');
     }else if(currentQuestion == questions.length){
         showEndScreen();        
     }else{
         document.getElementById('Arrow-left').classList.remove('invisible');
-        document.getElementById('Arrow-right').classList.remove('invisible');
+        /* document.getElementById('Arrow-right').classList.remove('invisible');   */     
     }
 
     document.getElementById('Question-nr').innerHTML = currentQuestion + 1;
@@ -220,6 +221,7 @@ function showQuestion(){
 
 function answer(selection){
     let question = questions[currentQuestion];
+    document.getElementById('Arrow-right').classList.remove('invisible'); 
     
     if(answered == false){
         if(selection == question['right_answer']){
@@ -241,24 +243,31 @@ function answer(selection){
 }
 
 function nextQuestion(){
+
+    document.getElementById('Arrow-right').classList.add('invisible'); 
     
-    if (currentQuestion == questions.length-1) {
-        showEndScreen();
-        
-    }else{
-        currentQuestion = currentQuestion + 1;     
-        
-        deleteAnswerColor();
+    if(answered == true){
+        if (currentQuestion == questions.length-1) {
+            showEndScreen();
+            
+        }else{
+            currentQuestion = currentQuestion + 1;     
+            
+            deleteAnswerColor();
 
-        document.getElementById('Helpscreen').classList.add('invisible');
+            document.getElementById('Helpscreen').classList.add('invisible');
 
-        showQuestion();
+            showQuestion();
+        }
+
+        answered = false;
     }
-
-    answered = false;
+    
 }
 
 function previousQuestion(){
+
+    document.getElementById('Arrow-right').classList.remove('invisible'); 
     
     currentQuestion = currentQuestion - 1;        
 
@@ -282,7 +291,7 @@ function deleteAnswerColor(){
 }
 
 function showEndScreen(){
-    console.log('Ende');
+    console.log('Endescreen');
     document.getElementById('Quizscreen').classList.add('d-none');
     document.getElementById('Endscreen').classList.remove('d-none');
     document.getElementById('Helpscreen').classList.remove('invisible');

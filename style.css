@@ -466,6 +466,18 @@ body{
     width: 50px;
 }
 
+@media (max-width: 500px){
+    .end-container h1{
+        font-size: 2em;
+    }
+    .end-container p{
+        font-size: 25px;
+    }
+    .bg-award img{
+        width: 250px;
+    }
+}
+
 /* -----------------Footer----------------------- */
 
 footer{
