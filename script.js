@@ -120,28 +120,30 @@ function toggleLanguage(){
         language = 'en';
         document.getElementById('Closebtn').style.left = '31px';
         englishStartEnd();
-        showHelpScreen(question);  
+        if(answered == true){
+           showHelpScreen(question);  
+        }         
         showQuestion();        
         if (document.getElementById('End-text').innerHTML == 'Sehr gut gemacht!') {
             document.getElementById('End-text').innerHTML = 'Very good!';
         }else if (document.getElementById('End-text').innerHTML == 'Übe noch etwas.'){
             document.getElementById('End-text').innerHTML = 'Not good. Try again';
-        }
-        console.log('wechsel zu en');
+        }        
     }
     else if (language =='en'){
         let question = questions[currentQuestion];
         language = 'de';
         document.getElementById('Closebtn').style.left = '1px'; 
         germanStartEnd();
-        showHelpScreen(question);  
+        if(answered == true){
+            showHelpScreen(question);
+        }  
         showQuestion();   
         if (document.getElementById('End-text').innerHTML == 'Very good!') {
             document.getElementById('End-text').innerHTML = 'Sehr gut gemacht!';
         }else if (document.getElementById('End-text').innerHTML == 'Not good. Try again'){
             document.getElementById('End-text').innerHTML = 'Übe noch etwas.';
-        }     
-        console.log('wechsel zu de')
+        }  
     }
 }
 
@@ -178,6 +180,7 @@ function startQuiz(){
     document.getElementById('Background').classList.add('blur');
     document.getElementById('Download-cheatsheet').classList.add('d-none');
     document.getElementById('Helpscreen').classList.add('invisible');
+    document.getElementById('Arrow-right').classList.add('invisible');
     rightAnswers = 0;
     answered = false;
     deleteAnswerColor();
@@ -199,13 +202,11 @@ function showQuestion(){
     }        
     
     if(currentQuestion == 0){
-        document.getElementById('Arrow-left').classList.add('invisible');
-        document.getElementById('Arrow-right').classList.add('invisible');
+        document.getElementById('Arrow-left').classList.add('invisible');        
     }else if(currentQuestion == questions.length){
         showEndScreen();        
     }else{
-        document.getElementById('Arrow-left').classList.remove('invisible');
-        /* document.getElementById('Arrow-right').classList.remove('invisible');   */     
+        document.getElementById('Arrow-left').classList.remove('invisible');            
     }
 
     document.getElementById('Question-nr').innerHTML = currentQuestion + 1;
@@ -214,8 +215,7 @@ function showQuestion(){
     /*Progress-bar */
     let percentQuestion = Math.round(((currentQuestion +1) / questions.length)*100);
     document.getElementById('Progress-bar').style.width = percentQuestion + '%';    
-
-    answered = false;
+    
 }
 
 function showQuestionbox(question){
@@ -232,8 +232,7 @@ function answer(selection){
     
     if(answered == false){
         if(selection == question['right_answer']){  /* Richtige Antwort */
-            rightAnswers = rightAnswers+1;
-            console.log('richtig');
+            rightAnswers = rightAnswers+1;            
             AUDIO_SUCCESS.play();
             document.getElementById('Answerbox'+selection).style.backgroundColor = '#CCFF91';
             
@@ -305,12 +304,11 @@ function previousQuestion(){
 
 function deleteAnswerColor(){
     for (let i = 1; i <= 4; i++) {
-        document.getElementById('Answerbox'+ i).style.backgroundColor = 'white';        
+        document.getElementById('Answerbox'+ i).style.backgroundColor = 'rgb(255,255,255,.8)';        
     }   
 }
 
-function showEndScreen(){
-    console.log('Endescreen');
+function showEndScreen(){    
     document.getElementById('Quizscreen').classList.add('d-none');
     document.getElementById('Endscreen').classList.remove('d-none');
     document.getElementById('Helpscreen').classList.remove('invisible');
@@ -338,4 +336,12 @@ function showEndScreen(){
     }
 }
 
+/* Tastaturbefehle */
+document.addEventListener ("keydown", function (event) {
+	if(event.key == 'ArrowRight'){
+        nextQuestion();
+    }if(event.key == 'ArrowLeft'){
+        previousQuestion();
+    }
+});
 
