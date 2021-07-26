@@ -83,7 +83,7 @@ body{
     background-color: var(--brown);
     content: '';
     width: 0;
-    height: 2px;
+    height: 3px;
     transition: width 250ms ease-in-out;
 }
 .nav-link:hover{
@@ -343,6 +343,9 @@ body{
     .answer{
         font-size: 17px;
     }
+    .progress-container{
+        width: 300px;
+    }
 }
 
 @media(max-width: 500px){
@@ -363,6 +366,9 @@ body{
     .question-progress{    
         font-size: 16px;
         font-weight: 200;
+    }
+    .progress-container{
+        width: 180px;
     }
 }
 

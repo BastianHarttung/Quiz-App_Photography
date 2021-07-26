@@ -185,28 +185,11 @@ function showQuestion(){
 
     if(language=='de'){
         let question = questions[currentQuestion];
-        document.getElementById('Question').innerHTML = question['question'];
-        document.getElementById('Answer_1').innerHTML = question['answer_1'];
-        document.getElementById('Answer_2').innerHTML = question['answer_2'];
-        document.getElementById('Answer_3').innerHTML = question['answer_3'];
-        document.getElementById('Answer_4').innerHTML = question['answer_4'];
-        
-        if(document.getElementById('Endscreen').classList.contains('d-none')){
-            document.getElementById('Help-img').src = question['help_image'];
-            document.getElementById('Help-text').innerHTML = question['help_text'];
-        }else{
-            showEndScreen();
-        }
-
+        questionInnerHTML()        
+                
     }else if (language=='en'){
         let question = questionsEng[currentQuestion];
-        document.getElementById('Question').innerHTML = question['question'];
-        document.getElementById('Answer_1').innerHTML = question['answer_1'];
-        document.getElementById('Answer_2').innerHTML = question['answer_2'];
-        document.getElementById('Answer_3').innerHTML = question['answer_3'];
-        document.getElementById('Answer_4').innerHTML = question['answer_4'];
-        document.getElementById('Help-img').src = question['help_image'];
-        document.getElementById('Help-text').innerHTML = question['help_text'];
+        questionInnerHTML()        
     }        
     
     if(currentQuestion == 0){
@@ -229,6 +212,14 @@ function showQuestion(){
     answered = false;
 }
 
+function questionInnerHTML(){
+    document.getElementById('Question').innerHTML = question['question'];
+        document.getElementById('Answer_1').innerHTML = question['answer_1'];
+        document.getElementById('Answer_2').innerHTML = question['answer_2'];
+        document.getElementById('Answer_3').innerHTML = question['answer_3'];
+        document.getElementById('Answer_4').innerHTML = question['answer_4'];
+}
+
 function answer(selection){
     let question = questions[currentQuestion];
     document.getElementById('Arrow-right').classList.remove('invisible'); 
@@ -239,6 +230,9 @@ function answer(selection){
             console.log('richtig');
             AUDIO_SUCCESS.play();
             document.getElementById('Answerbox'+selection).style.backgroundColor = '#CCFF91';
+            
+            document.getElementById('Help-img').src = question['help_image'];
+            document.getElementById('Help-text').innerHTML = question['help_text'];
             document.getElementById('Helpscreen').classList.remove('invisible');
         }else{                                      /* falsche Antwort */
             console.log('falsch');
@@ -246,6 +240,9 @@ function answer(selection){
             let rightanswer = question['right_answer']; 
             document.getElementById('Answerbox'+rightanswer).style.backgroundColor = '#CCFF91';
             document.getElementById('Answerbox'+selection).style.backgroundColor = '#FFA1A1';
+            
+            document.getElementById('Help-img').src = question['help_image'];
+            document.getElementById('Help-text').innerHTML = question['help_text'];
             document.getElementById('Helpscreen').classList.remove('invisible');        
         }
     }
