@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     
     <title>Quiz-App Fotografie</title>
-    <!-- <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 
@@ -77,20 +77,26 @@
             </div>
           </div>
 
-          <div class="progress">
+          <div class="progress-container-all">
+            
             <div id="Arrow-left" class="arrow arrow-left" onclick="previousQuestion()">&lt</div>
-            <div class="progress-container">
+            
+            <div class="progress-container">              
               <div class="question-progress">
                 <span id="Frage">Frage</span> 
                 <span id="Question-nr"></span> 
                 <span id="Of">von</span> 
                 <span id="Question-length"></span>
               </div>
-              <div class="progress-bar">
 
+              <div class="progress">
+                <div id = "Progress-bar" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
+            
             </div>
+
             <div id="Arrow-right" class="arrow arrow-right" onclick="nextQuestion()">&gt</div>
+          
           </div>
         </div>   
         

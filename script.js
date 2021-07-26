@@ -109,6 +109,10 @@ let language = 'de';
 let rightAnswers = 0;
 let answered = false;
 
+let AUDIO_SUCCESS = new Audio('sounds/right-Camera-shutter.mp3');
+let AUDIO_FAIL = new Audio('sounds/wrong-squeak.mp3');
+let AUDIO_END = new Audio('sounds/end-applause.wav');
+
 /* Language */
 function toggleLanguage(){
     if (language == 'de'){
@@ -169,6 +173,7 @@ function startQuiz(){
     document.getElementById('Endscreen').classList.add('d-none');
     document.getElementById('Background').classList.add('blur');
     document.getElementById('Download-cheatsheet').classList.add('d-none');
+    document.getElementById('Helpscreen').classList.add('invisible');
     rightAnswers = 0;
     answered = false;
     deleteAnswerColor();
@@ -216,6 +221,11 @@ function showQuestion(){
 
     document.getElementById('Question-nr').innerHTML = currentQuestion + 1;
     document.getElementById('Question-length').innerHTML = questions.length;
+
+    /*Progress-bar */
+    let percentQuestion = Math.round(((currentQuestion +1) / questions.length)*100);
+    document.getElementById('Progress-bar').style.width = percentQuestion + '%';    
+
     answered = false;
 }
 
@@ -224,13 +234,15 @@ function answer(selection){
     document.getElementById('Arrow-right').classList.remove('invisible'); 
     
     if(answered == false){
-        if(selection == question['right_answer']){
+        if(selection == question['right_answer']){  /* Richtige Antwort */
             rightAnswers = rightAnswers+1;
             console.log('richtig');
+            AUDIO_SUCCESS.play();
             document.getElementById('Answerbox'+selection).style.backgroundColor = '#CCFF91';
             document.getElementById('Helpscreen').classList.remove('invisible');
-        }else{
+        }else{                                      /* falsche Antwort */
             console.log('falsch');
+            AUDIO_FAIL.play();
             let rightanswer = question['right_answer']; 
             document.getElementById('Answerbox'+rightanswer).style.backgroundColor = '#CCFF91';
             document.getElementById('Answerbox'+selection).style.backgroundColor = '#FFA1A1';
@@ -248,10 +260,11 @@ function nextQuestion(){
     
     if(answered == true){
         if (currentQuestion == questions.length-1) {
+            AUDIO_END.play()
             showEndScreen();
             
         }else{
-            currentQuestion = currentQuestion + 1;     
+            currentQuestion++;     
             
             deleteAnswerColor();
 
@@ -269,7 +282,7 @@ function previousQuestion(){
 
     document.getElementById('Arrow-right').classList.remove('invisible'); 
     
-    currentQuestion = currentQuestion - 1;        
+    currentQuestion--;        
 
     if(answered == true){
         deleteAnswerColor();
@@ -310,11 +323,11 @@ function showEndScreen(){
 
     if(rightAnswers >= 4 && language == 'de'){
         document.getElementById('End-text').innerHTML = 'Sehr gut gemacht!';
-    }else if(rightAnswers < 2 && language == 'de'){
+    }else if(rightAnswers < 4 && language == 'de'){
         document.getElementById('End-text').innerHTML = 'Übe noch etwas.';
-    }else if (rightAnswers >=2 && language == 'en'){
+    }else if (rightAnswers >=4 && language == 'en'){
         document.getElementById('End-text').innerHTML = 'Very good!';
-    }else if (rightAnswers < 2 && language == 'en'){
+    }else if (rightAnswers < 4 && language == 'en'){
         document.getElementById('End-text').innerHTML = 'Not good. Try again';
     }
 }
