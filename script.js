@@ -113,6 +113,8 @@ let AUDIO_SUCCESS = new Audio('sounds/right-Camera-shutter.mp3');
 let AUDIO_FAIL = new Audio('sounds/wrong-squeak.mp3');
 let AUDIO_END = new Audio('sounds/end-applause.wav');
 
+
+
 /* Language */
 function toggleLanguage(){
     if (language == 'de'){
@@ -227,7 +229,13 @@ function showQuestionbox(question){
 }
 
 function answer(selection){
-    let question = questions[currentQuestion];
+    let question;
+    if(language =='en'){
+        question = questionsEng[currentQuestion];
+    }else{
+        question = questions[currentQuestion];
+    }        
+    
     document.getElementById('Arrow-right').classList.remove('invisible'); 
     
     if(answered == false){
