@@ -3,7 +3,7 @@
 This is a Quiz-App. It has Questions about Photography and you get 
 Cheat-Sheet as a Reward.
 
-###Start
+### Start
 
 - Click Start Button to start
 - Change Language if you want
