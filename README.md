@@ -2,7 +2,7 @@
 
 This is a Quiz-App. It has Questions about Photography and you get 
 Cheat-Sheet as a Reward.\
-Test the App: http://bastian-harttung.developerakademie.com/Quiz-App/index.html
+Test the App: https://www.bastian-harttung-projekte.de/quiz-app/
 
 ### Start
 
